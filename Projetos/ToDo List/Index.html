@@ -1,0 +1,57 @@
+<html ng-app="toDoList">
+  <head>
+    <title>ToDo List</title>
+    <script src="http://code.angularjs.org/1.0.1/angular-1.0.1.min.js"></script>
+    <script src="module.js"></script>
+    <script src="controller.js"></script>
+  </head>
+
+  <body ng-controller="toDoListCtrl">
+    <h3>{{app}}</h3>
+
+    Tarefa: <input type="text" ng-model="item.descricao"><br>
+    <button ng-click="adicionarItem(item)" ng-disabled="!item.descricao">Ok</button>
+    <hr/>
+
+    <table>
+      <tr>
+        <th></th>
+        <th>Descricao</th>
+        <th>Situacao</th>
+        <th>Opcoes</th>
+      </tr>
+      <tr ng-repeat="item in itens">
+        <td><input type="checkbox" ng-model="item.selecionado"/></td>
+        <td>
+          <div ng-hide="$index==editar">{{item.descricao}}</div>
+          <input type="text" size="3" ng-model="item.descricao" ng-show="$index==editar">
+        </td>
+        <td>
+          <div ng-hide="$index==editar">{{item.situacao}}</div>
+          <select ng-model="item.situacao" ng-show="$index==editar">
+      			<option value="pendente">pendente</option>
+            <option value="finalizada">finalizada</option>
+      		</select>
+        </td>
+        <td>
+          <button class="btn" ng-click="editarItem($index)" ng-hide="$index==editar">Editar</button>
+          <button class="btn" ng-click="editarItem('item')" ng-show="$index==editar">Salvar</button>
+        </td>
+      </tr>
+    </table>
+    <hr/>
+
+    Exibicao: <br>
+    <input type="radio" name="exibicao" value="Todas" ng-model="exibicao">todas
+    <input type="radio" name="exibicao" value="Pendentes"  ng-model="exibicao">pendentes
+    <input type="radio" name="exibicao" value="Finalizadas" ng-model="exibicao">finalizadas
+    <br>
+    <button ng-click="exibirItens()">Ok</button>
+    <hr/>
+
+
+    <br>
+
+
+  </body>
+</html>
