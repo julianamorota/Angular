@@ -18,7 +18,7 @@
         <th></th>
         <th>Descricao</th>
         <th>Situacao</th>
-        <th>Opcoes</th>
+        <th>Opcao</th>
       </tr>
       <tr ng-repeat="item in itens">
         <td><input type="checkbox" ng-model="item.selecionado"/></td>
@@ -39,6 +39,7 @@
         </td>
       </tr>
     </table>
+    <button class="btn" ng-click="excluirItem(itens)">Excluir</button>
     <hr/>
 
     Exibicao: <br>

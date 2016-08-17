@@ -33,13 +33,13 @@ app.controller("toDoListCtrl", function($scope){
  * @description  o que é a fn
  * @param {object} itens  model de tarefas
  */
-  $scope.excluirItem = function(item){
+  $scope.excluirItem = function(itens){
 
-    /*$scope.itens = itens.filter(function(item){
+    $scope.itens = itens.filter(function(item){
       if(!item.selecionado)
         return item;
     });
-    */
+
   };
 
   $scope.editarItem = function(item){
