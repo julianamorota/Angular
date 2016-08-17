@@ -1,7 +1,8 @@
 app.controller("toDoListCtrl", function($scope){
-
   $scope.app = "To-Do List";
   $scope.itens = [];
+
+
 
   /**
    * @description  adiciona tarefas no array
@@ -11,26 +12,11 @@ app.controller("toDoListCtrl", function($scope){
     item.situacao="pendente";
     $scope.itens.push(angular.copy(item));
     delete $scope.item;
-  };
-
-  /**
-   * @description  editar
-   * @param {object} itens  model de tarefas
-   */
-  $scope.editarItem = function(item){
-
-  };
-
-  /**
-   * @description  o que é a fn
-   * @param {object} itens  model de tarefas
-   */
-  $scope.alterarItem = function(item){
-
+    localStorage.setItem('toDoList', JSON.stringify($scope.itens));
   };
 
 /**
- * @description  o que é a fn
+ * @description  exclui tarefa(s) selecionada(s) atraves do checkbox
  * @param {object} itens  model de tarefas
  */
   $scope.excluirItem = function(itens){
@@ -39,12 +25,14 @@ app.controller("toDoListCtrl", function($scope){
       if(!item.selecionado)
         return item;
     });
-
   };
 
+  /**
+   * @description  editar e salvar tarefas
+   * @param {object} itens  model de tarefas
+   */
   $scope.editarItem = function(item){
     $scope.editar = item;
-    console.log($scope.itens);
   };
 
 

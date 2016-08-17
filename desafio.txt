@@ -1,0 +1,25 @@
+Desafio
+Campos:
+
+
+Descrição: input text
+Situação (pendente/finalizada): radio button
+
+Requisitos:
+
+OK Cadastrar uma tarefa
+OK Exibir listagem de tarefas cadastras (descrição e situação)
+OK Título do TODO list como one databind (variável no escopo para apresentar na view)
+OK Excluir uma tarefa cadastrada
+OK Editar uma tarefa cadastrada.
+Botão que exibe somente as tarefas finalizadas
+Tarefas pendentes devem possuir cor vermelha
+
+
+Desafio extra:
+
+Contador de total de tarefas por situação (pendente, finalizada e todas)
+Armazenar em localstorage
+Poder cadastrar mais situações
+Poder carregar dinamicamente mais situações na view (regra: se houver mais de 2 situações o elemento se torna um combobox)
+https://www.thepolyglotdeveloper.com/2014/12/use-ngstorage-angularjs-local-storage-needs/
