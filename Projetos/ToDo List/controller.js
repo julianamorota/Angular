@@ -34,6 +34,17 @@ app.controller("toDoListCtrl", function($scope){
   $scope.editarItem = function(item){
     $scope.editar = item;
   };
+  
+   /**
+   * @description  editar e salvar tarefas
+   * @param {object} itens  model de tarefas
+   */
+  $scope.isItemSelecionado = function(itens) {
+				return itens.some(function (item){
+					return item.selecionado;
+				});
+			};
+  
 
 
 });

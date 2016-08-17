@@ -5,7 +5,6 @@
     <script src="module.js"></script>
     <script src="controller.js"></script>
   </head>
-
   <body ng-controller="toDoListCtrl">
     <h3>{{app}}</h3>
 
@@ -39,7 +38,7 @@
         </td>
       </tr>
     </table>
-    <button class="btn" ng-click="excluirItem(itens)">Excluir</button>
+    <button class="btn" ng-click="excluirItem(itens)" ng-disabled="!isItemSelecionado(itens)">Excluir</button>
     <hr/>
 
     Exibicao: <br>
