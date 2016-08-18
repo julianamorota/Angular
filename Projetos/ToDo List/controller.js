@@ -1,6 +1,8 @@
 app.controller("toDoListCtrl", function($scope){
   $scope.app = "To-Do List";
   $scope.itens = [];
+  $scope.itens = ('toDo: ', JSON.parse(localStorage.getItem('toDo')));
+
   $scope.exibicao = ""; //deixar exibicao todas selecionado default
 
   /**
@@ -11,7 +13,7 @@ app.controller("toDoListCtrl", function($scope){
     item.situacao="pendente";
     $scope.itens.push(angular.copy(item));
     delete $scope.item;
-    localStorage.setItem('toDoList', JSON.stringify($scope.itens));
+    localStorage.setItem('toDo', JSON.stringify($scope.itens));
   };
 
 /**
@@ -24,6 +26,7 @@ app.controller("toDoListCtrl", function($scope){
       if(!item.selecionado)
         return item;
     });
+    localStorage.setItem('toDo', JSON.stringify($scope.itens));
   };
 
   /**
@@ -32,6 +35,7 @@ app.controller("toDoListCtrl", function($scope){
    */
   $scope.editarItem = function(item){
     $scope.editar = item;
+    localStorage.setItem('toDo', JSON.stringify($scope.itens));
   };
 
    /**
