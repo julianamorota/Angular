@@ -13,7 +13,10 @@ function todo ($scope) {
     ];
     $scope.itens = ('toDo: ', JSON.parse(localStorage.getItem('toDo')));
     $scope.situacoes = ('toDoSituacao: ', JSON.parse(localStorage.getItem('toDoSituacao')));
-    $scope.exibicao = ""; //deixar exibicao todas selecionado default
+    $scope.exibicao = ""; //deixar exibicao "todas" selecionado por default
+    $scope.itensTotal = $scope.itens.length;
+    //TESTEEEEEEEEEE
+
 
     /**
      * @description  adiciona tarefas no array
@@ -67,6 +70,8 @@ function todo ($scope) {
       $scope.situacao.descricao = "";
       localStorage.setItem('toDoSituacao', JSON.stringify($scope.situacoes));
     };
+
+
 
 
 }

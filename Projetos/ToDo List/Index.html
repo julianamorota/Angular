@@ -1,4 +1,5 @@
 <html ng-app="toDoList">
+
   <head>
     <title>ToDo List</title>
     <script src="http://code.angularjs.org/1.0.1/angular-1.0.1.min.js"></script>
@@ -10,32 +11,54 @@
   	}
   </style>
   </head>
+
   <body ng-controller="toDoListCtrl">
     <h3>{{app}}</h3>
 
     Tarefa: <input type="text" ng-model="item.descricao"><br>
     <button ng-click="adicionarItem(item)" ng-disabled="!item.descricao">Ok</button>
     <hr/>
-    
-    Exibicao: <br>
+
+    <table>
+      <tr>
+        <th> Situacao </th>
+        <th> Qtd </th>
+        <th> Opcao </th>
+      </tr>
+
+      <tr>
+        <td>  <input type="radio" name="item" value="" ng-model="exibicao">todas </td>
+        <td> {{itens.length}} </td>
+      </tr>
+
+      <tr ng-repeat="situacao in situacoes" ng-repeat="item in itens">
+        <td> <input type="radio" name="item" value="{{situacao.descricao}}" ng-model="$parent.exibicao">{{situacao.descricao}} </td>
+        <td> {{ (item.situacao.descricao == "pendente").length}}</td>
+      </tr>
+
+    </table>
+
+    <!--
     <input type="radio" name="item" value="" ng-model="exibicao">todas
     <div ng-repeat="situacao in situacoes">
-      <input type="radio" name="item" value="{{situacao.descricao}}" ng-model="$parent.exibicao">{{situacao.descricao}}
+
     </div>
+  -->
     <hr/>
 
     <table>
       <tr>
         <th></th>
-        <th>Descricao</th>
-        <th>Situacao</th>
-        <th>Opcao</th>
+        <th> Descricao </th>
+        <th> Situacao </th>
+        <th> Opcao </th>
       </tr>
+
       <tr ng-repeat="item in itens | filter:{situacao: exibicao}" ng-class="{red: item.situacao=='pendente'}">
         <td><input type="checkbox" ng-model="item.selecionado"/></td>
         <td>
           <div ng-hide="$index==editar">{{item.descricao}}</div>
-          <input type="text" size="3" ng-model="item.descricao" ng-show="$index==editar">
+          <input type="text" size="5" ng-model="item.descricao" ng-show="$index==editar">
         </td>
         <td>
           <div ng-hide="$index==editar">{{item.situacao}}</div>
@@ -45,10 +68,11 @@
         </td>
         <td>
           <button class="btn" ng-click="editarItem($index)" ng-hide="$index==editar">Editar</button>
-          <button class="btn" ng-click="editarItem('item')" ng-show="$index==editar">Salvar</button>
+         <button class="btn" ng-click="editarItem('item')" ng-show="$index==editar">Salvar</button>
         </td>
       </tr>
     </table>
+
     <button class="btn" ng-click="excluirItem(itens)" ng-disabled="!isItemSelecionado(itens)">Excluir</button>
     <hr/>
 
@@ -59,9 +83,6 @@
     <button ng-click="adicionarSituacao(situacao)" ng-disabled="!situacao.descricao">Ok</button>
 
     <br>
-
-
-    {{situacao}}
 
   </body>
 </html>
