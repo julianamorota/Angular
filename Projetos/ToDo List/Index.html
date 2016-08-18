@@ -4,6 +4,15 @@
     <script src="http://code.angularjs.org/1.0.1/angular-1.0.1.min.js"></script>
     <script src="module.js"></script>
     <script src="controller.js"></script>
+	<style type="text/css">
+	.red {
+    color: red; 
+	}
+
+	.black {
+    color: black;
+}
+</style>
   </head>
   <body ng-controller="toDoListCtrl">
     <h3>{{app}}</h3>
@@ -19,7 +28,7 @@
         <th>Situacao</th>
         <th>Opcao</th>
       </tr>
-      <tr ng-repeat="item in itens">
+      <tr ng-repeat="item in itens" ng-class="{red: item.situacao=='pendente'}">
         <td><input type="checkbox" ng-model="item.selecionado"/></td>
         <td>
           <div ng-hide="$index==editar">{{item.descricao}}</div>
