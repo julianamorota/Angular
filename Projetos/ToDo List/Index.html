@@ -37,46 +37,42 @@
       </tr>
 
     </table>
-
+    <hr/>
     <!--
     <input type="radio" name="item" value="" ng-model="exibicao">todas
     <div ng-repeat="situacao in situacoes">
 
     </div>
   -->
-    <hr/>
+  <table>
+    <tr>
+      <th></th>
+      <th> Descricao </th>
+      <th> Situacao </th>
+      <th> Opcao </th>
+    </tr>
 
-    <table>
-      <tr>
-        <th></th>
-        <th> Descricao </th>
-        <th> Situacao </th>
-        <th> Opcao </th>
-      </tr>
-
-      <tr ng-repeat="item in itens | filter:{situacao: exibicao}" ng-class="{red: item.situacao=='pendente'}">
-        <td><input type="checkbox" ng-model="item.selecionado"/></td>
-        <td>
-          <div ng-hide="$index==editar">{{item.descricao}}</div>
-          <input type="text" size="5" ng-model="item.descricao" ng-show="$index==editar">
-        </td>
-        <td>
-          <div ng-hide="$index==editar">{{item.situacao}}</div>
-          <select ng-model="item.situacao" ng-show="$index==editar">
-      			<option ng-repeat="situacao in situacoes" title="{{situacao.descricao}}" value="{{situacao.descricao}}">{{situacao.descricao}}</option>
-          </select>
-        </td>
-        <td>
-          <button class="btn" ng-click="editarItem($index)" ng-hide="$index==editar">Editar</button>
-         <button class="btn" ng-click="editarItem('item')" ng-show="$index==editar">Salvar</button>
-        </td>
-      </tr>
-    </table>
+    <tr ng-repeat="item in itens | filter:{situacao: exibicao}" ng-class="{red: item.situacao=='pendente'}">
+      <td><input type="checkbox" ng-model="item.selecionado"/></td>
+      <td>
+        <div ng-hide="$index==editar">{{item.descricao}}</div>
+        <input type="text" size="5" ng-model="item.descricao" ng-show="$index==editar">
+      </td>
+      <td>
+        <div ng-hide="$index==editar">{{item.situacao}}</div>
+        <select ng-model="item.situacao" ng-show="$index==editar">
+          <option ng-repeat="situacao in situacoes" title="{{situacao.descricao}}" value="{{situacao.descricao}}">{{situacao.descricao}}</option>
+        </select>
+      </td>
+      <td>
+        <button class="btn" ng-click="editarItem($index)" ng-hide="$index==editar">Editar</button>
+       <button class="btn" ng-click="editarItem('item')" ng-show="$index==editar">Salvar</button>
+      </td>
+    </tr>
+  </table>
 
     <button class="btn" ng-click="excluirItem(itens)" ng-disabled="!isItemSelecionado(itens)">Excluir</button>
     <hr/>
-
-
 
     Cadastro de situacao: <br>
     <input type="text" ng-model="situacao.descricao"><br>

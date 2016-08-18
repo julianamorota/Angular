@@ -14,10 +14,8 @@ function todo ($scope) {
     $scope.itens = ('toDo: ', JSON.parse(localStorage.getItem('toDo')));
     $scope.situacoes = ('toDoSituacao: ', JSON.parse(localStorage.getItem('toDoSituacao')));
     $scope.exibicao = ""; //deixar exibicao "todas" selecionado por default
-    $scope.itensTotal = $scope.itens.length;
-    //TESTEEEEEEEEEE
 
-
+  
     /**
      * @description  adiciona tarefas no array
      * @param {object} item  model de tarefa
@@ -28,6 +26,7 @@ function todo ($scope) {
       $scope.item.descricao = "";
       localStorage.setItem('toDo', JSON.stringify($scope.itens));
     };
+
 
   /**
    * @description  exclui tarefa(s) selecionada(s) atraves do checkbox
@@ -42,6 +41,7 @@ function todo ($scope) {
       localStorage.setItem('toDo', JSON.stringify($scope.itens));
     };
 
+
     /**
      * @description  editar e salvar tarefas
      * @param {object} item  model de tarefa
@@ -50,6 +50,7 @@ function todo ($scope) {
       $scope.editar = item;
       localStorage.setItem('toDo', JSON.stringify($scope.itens));
     };
+
 
      /**
      * @description  verificar se tem, pelo menos, um item selecionado na tabela
@@ -61,6 +62,7 @@ function todo ($scope) {
   				});
   	};
 
+
     /**
     * @description  editar e salvar tarefas
     * @param {object} itens  model de tarefas
@@ -70,8 +72,5 @@ function todo ($scope) {
       $scope.situacao.descricao = "";
       localStorage.setItem('toDoSituacao', JSON.stringify($scope.situacoes));
     };
-
-
-
 
 }

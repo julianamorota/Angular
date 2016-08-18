@@ -24,7 +24,7 @@ OK Poder carregar dinamicamente mais situações na view (regra: se houver mais de
 
 Outros:
 
-Substituir show,hide -> if
-Substituir $index por causa da paginação (colocar id)
+Substituir show,hide -> if ????
+Substituir $index por causa da paginação (colocar id) ????
 Arrumar quando array (em localstorage) for null
 Alterar/deletar situações
