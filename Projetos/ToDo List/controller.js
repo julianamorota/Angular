@@ -1,8 +1,7 @@
 app.controller("toDoListCtrl", function($scope){
   $scope.app = "To-Do List";
   $scope.itens = [];
-
-
+  $scope.exibicao = ""; //deixar exibicao todas selecionado default
 
   /**
    * @description  adiciona tarefas no array
@@ -34,7 +33,7 @@ app.controller("toDoListCtrl", function($scope){
   $scope.editarItem = function(item){
     $scope.editar = item;
   };
-  
+
    /**
    * @description  editar e salvar tarefas
    * @param {object} itens  model de tarefas
@@ -44,7 +43,5 @@ app.controller("toDoListCtrl", function($scope){
 					return item.selecionado;
 				});
 			};
-  
-
 
 });

@@ -6,11 +6,8 @@
     <script src="controller.js"></script>
 	<style type="text/css">
 	.red {
-    color: red; 
+    color: red;
 	}
-
-	.black {
-    color: black;
 }
 </style>
   </head>
@@ -28,7 +25,7 @@
         <th>Situacao</th>
         <th>Opcao</th>
       </tr>
-      <tr ng-repeat="item in itens" ng-class="{red: item.situacao=='pendente'}">
+      <tr ng-repeat="item in itens | filter:{situacao:exibicao}" ng-class="{red: item.situacao=='pendente'}">
         <td><input type="checkbox" ng-model="item.selecionado"/></td>
         <td>
           <div ng-hide="$index==editar">{{item.descricao}}</div>
@@ -51,11 +48,9 @@
     <hr/>
 
     Exibicao: <br>
-    <input type="radio" name="exibicao" value="Todas" ng-model="exibicao">todas
-    <input type="radio" name="exibicao" value="Pendentes"  ng-model="exibicao">pendentes
-    <input type="radio" name="exibicao" value="Finalizadas" ng-model="exibicao">finalizadas
-    <br>
-    <button ng-click="exibirItens()">Ok</button>
+    <input type="radio" name="item" value="" ng-model="exibicao" >todas
+    <input type="radio" name="item" value="pendente"  ng-model="exibicao">pendentes
+    <input type="radio" name="item" value="finalizada" ng-model="exibicao">finalizadas
     <hr/>
 
 
