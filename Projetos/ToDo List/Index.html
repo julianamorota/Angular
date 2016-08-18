@@ -4,17 +4,24 @@
     <script src="http://code.angularjs.org/1.0.1/angular-1.0.1.min.js"></script>
     <script src="module.js"></script>
     <script src="controller.js"></script>
-	<style type="text/css">
-	.red {
-    color: red;
-	}
-</style>
+  	<style type="text/css">
+  	.red {
+      color: red;
+  	}
+  </style>
   </head>
   <body ng-controller="toDoListCtrl">
     <h3>{{app}}</h3>
 
     Tarefa: <input type="text" ng-model="item.descricao"><br>
     <button ng-click="adicionarItem(item)" ng-disabled="!item.descricao">Ok</button>
+    <hr/>
+    
+    Exibicao: <br>
+    <input type="radio" name="item" value="" ng-model="exibicao">todas
+    <div ng-repeat="situacao in situacoes">
+      <input type="radio" name="item" value="{{situacao.descricao}}" ng-model="$parent.exibicao">{{situacao.descricao}}
+    </div>
     <hr/>
 
     <table>
@@ -24,7 +31,7 @@
         <th>Situacao</th>
         <th>Opcao</th>
       </tr>
-      <tr ng-repeat="item in itens | filter:{situacao:exibicao}" ng-class="{red: item.situacao=='pendente'}">
+      <tr ng-repeat="item in itens | filter:{situacao: exibicao}" ng-class="{red: item.situacao=='pendente'}">
         <td><input type="checkbox" ng-model="item.selecionado"/></td>
         <td>
           <div ng-hide="$index==editar">{{item.descricao}}</div>
@@ -33,9 +40,8 @@
         <td>
           <div ng-hide="$index==editar">{{item.situacao}}</div>
           <select ng-model="item.situacao" ng-show="$index==editar">
-      			<option value="pendente">pendente</option>
-            <option value="finalizada">finalizada</option>
-      		</select>
+      			<option ng-repeat="situacao in situacoes" title="{{situacao.descricao}}" value="{{situacao.descricao}}">{{situacao.descricao}}</option>
+          </select>
         </td>
         <td>
           <button class="btn" ng-click="editarItem($index)" ng-hide="$index==editar">Editar</button>
@@ -46,15 +52,16 @@
     <button class="btn" ng-click="excluirItem(itens)" ng-disabled="!isItemSelecionado(itens)">Excluir</button>
     <hr/>
 
-    Exibicao: <br>
-    <input type="radio" name="item" value="" ng-model="exibicao" >todas
-    <input type="radio" name="item" value="pendente"  ng-model="exibicao">pendentes
-    <input type="radio" name="item" value="finalizada" ng-model="exibicao">finalizadas
-    <hr/>
 
+
+    Cadastro de situacao: <br>
+    <input type="text" ng-model="situacao.descricao"><br>
+    <button ng-click="adicionarSituacao(situacao)" ng-disabled="!situacao.descricao">Ok</button>
 
     <br>
 
+
+    {{situacao}}
 
   </body>
 </html>

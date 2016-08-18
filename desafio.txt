@@ -19,5 +19,12 @@ Desafio extra:
 
 Contador de total de tarefas por situação (pendente, finalizada e todas)
 OK Armazenar em localstorage
-Poder cadastrar mais situações
-Poder carregar dinamicamente mais situações na view (regra: se houver mais de 2 situações o elemento se torna um combobox)
+OK Poder cadastrar mais situações
+OK Poder carregar dinamicamente mais situações na view (regra: se houver mais de 2 situações o elemento se torna um combobox)
+
+Outros:
+
+Substituir show,hide -> if
+Substituir $index por causa da paginação (colocar id)
+Arrumar quando array (em localstorage) for null
+Alterar/deletar situações

@@ -7,7 +7,12 @@ angular
 function todo ($scope) {
     $scope.app = "To-Do List";
     $scope.itens = [];
+    $scope.situacoes = [
+      {descricao: "pendente"},
+      {descricao: "finalizada"}
+    ];
     $scope.itens = ('toDo: ', JSON.parse(localStorage.getItem('toDo')));
+    $scope.situacoes = ('toDoSituacao: ', JSON.parse(localStorage.getItem('toDoSituacao')));
     $scope.exibicao = ""; //deixar exibicao todas selecionado default
 
     /**
@@ -17,8 +22,7 @@ function todo ($scope) {
     $scope.adicionarItem = function(item){
       item.situacao="pendente";
       $scope.itens.push(angular.copy(item));
-      delete $scope.item;
-      //TODO: mudar modo de limpar campo
+      $scope.item.descricao = "";
       localStorage.setItem('toDo', JSON.stringify($scope.itens));
     };
 
@@ -37,7 +41,7 @@ function todo ($scope) {
 
     /**
      * @description  editar e salvar tarefas
-     * @param {object} itens  model de tarefas
+     * @param {object} item  model de tarefa
      */
     $scope.editarItem = function(item){
       $scope.editar = item;
@@ -45,13 +49,24 @@ function todo ($scope) {
     };
 
      /**
-     * @description  editar e salvar tarefas
+     * @description  verificar se tem, pelo menos, um item selecionado na tabela
      * @param {object} itens  model de tarefas
      */
     $scope.isItemSelecionado = function(itens) {
   				return itens.some(function (item){
   					return item.selecionado;
   				});
-  			};
+  	};
+
+    /**
+    * @description  editar e salvar tarefas
+    * @param {object} itens  model de tarefas
+    */
+    $scope.adicionarSituacao = function(situacao) {
+      $scope.situacoes.push(angular.copy(situacao));
+      $scope.situacao.descricao = "";
+      localStorage.setItem('toDoSituacao', JSON.stringify($scope.situacoes));
+    };
+
 
 }
