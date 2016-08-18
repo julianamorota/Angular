@@ -13,7 +13,7 @@ OK Título do TODO list como one databind (variável no escopo para apresentar na 
 OK Excluir uma tarefa cadastrada
 OK Editar uma tarefa cadastrada.
 Botão que exibe somente as tarefas finalizadas
-Tarefas pendentes devem possuir cor vermelha
+OK Tarefas pendentes devem possuir cor vermelha
 
 
 Desafio extra:
