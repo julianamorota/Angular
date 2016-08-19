@@ -29,11 +29,12 @@
       </tr>
 
       <tr ng-repeat="situacao in situacoes track by $index">
-        <td> <input type="radio" name="item" ng-model="exibicao">{{situacao.descricao}} </td>
+        <td> <input type="radio" name="item" value="{{situacao.descricao}}" ng-model="$parent.exibicao">{{situacao.descricao}} </td>
         <td> </td>
         <td>
-        
           <button ng-click="excluirSituacao()">Excluir</button>
+          <button ng-click="">Editar</button>
+          <button ng-click="">Salvar</button>
         </td>
       </tr>
     </table>
@@ -77,6 +78,5 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.js"></script>
     <script src="module.js"></script>
     <script src="controller.js"></script>
-
   </body>
 </html>
