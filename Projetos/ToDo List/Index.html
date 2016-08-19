@@ -2,9 +2,6 @@
 
   <head>
     <title>ToDo List</title>
-    <script src="http://code.angularjs.org/1.0.1/angular-1.0.1.min.js"></script>
-    <script src="module.js"></script>
-    <script src="controller.js"></script>
   	<style type="text/css">
   	.red {
       color: red;
@@ -31,19 +28,17 @@
         <td> {{itens.length}} </td>
       </tr>
 
-      <tr ng-repeat="situacao in situacoes" ng-repeat="item in itens">
-        <td> <input type="radio" name="item" value="{{situacao.descricao}}" ng-model="$parent.exibicao">{{situacao.descricao}} </td>
-        <td> {{ (item.situacao.descricao == "pendente").length}}</td>
+      <tr ng-repeat="situacao in situacoes track by $index">
+        <td> <input type="radio" name="item" ng-model="exibicao">{{situacao.descricao}} </td>
+        <td> </td>
+        <td>
+        
+          <button ng-click="excluirSituacao()">Excluir</button>
+        </td>
       </tr>
-
     </table>
-    <hr/>
-    <!--
-    <input type="radio" name="item" value="" ng-model="exibicao">todas
-    <div ng-repeat="situacao in situacoes">
+  <hr/>
 
-    </div>
-  -->
   <table>
     <tr>
       <th></th>
@@ -52,7 +47,7 @@
       <th> Opcao </th>
     </tr>
 
-    <tr ng-repeat="item in itens | filter:{situacao: exibicao}" ng-class="{red: item.situacao=='pendente'}">
+    <tr ng-repeat="item in itens | filter: {situacao: exibicao} track by $index" ng-class="{red: item.situacao=='pendente'}">
       <td><input type="checkbox" ng-model="item.selecionado"/></td>
       <td>
         <div ng-hide="$index==editar">{{item.descricao}}</div>
@@ -65,8 +60,8 @@
         </select>
       </td>
       <td>
-        <button class="btn" ng-click="editarItem($index)" ng-hide="$index==editar">Editar</button>
-       <button class="btn" ng-click="editarItem('item')" ng-show="$index==editar">Salvar</button>
+        <button ng-click="editarItem($index)" ng-hide="$index==editar">Editar</button>
+       <button ng-click="editarItem('item')" ng-show="$index==editar">Salvar</button>
       </td>
     </tr>
   </table>
@@ -77,8 +72,11 @@
     Cadastro de situacao: <br>
     <input type="text" ng-model="situacao.descricao"><br>
     <button ng-click="adicionarSituacao(situacao)" ng-disabled="!situacao.descricao">Ok</button>
-
     <br>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.js"></script>
+    <script src="module.js"></script>
+    <script src="controller.js"></script>
 
   </body>
 </html>

@@ -24,7 +24,38 @@ OK Poder carregar dinamicamente mais situações na view (regra: se houver mais de
 
 Outros:
 
-Substituir show,hide -> if ????
-Substituir $index por causa da paginação (colocar id) ????
-Arrumar quando array (em localstorage) for null
+Substituir show,hide -> if
+Substituir $index por causa da paginação (colocar id)
 Alterar/deletar situações
+Arrumar quando array (em localstorage) for null
+
+
+  <table>
+    <tr>
+      <th></th>
+      <th> Descricao </th>
+      <th> Situacao </th>
+      <th> Opcao </th>
+    </tr>
+
+    <tr ng-repeat="item in itens | filter:{situacao: exibicao}" ng-class="{red: item.situacao=='pendente'}">
+      <td><input type="checkbox" ng-model="item.selecionado"/></td>
+      <td>
+        <div ng-hide="$index==editar">{{item.descricao}}</div>
+        <input type="text" size="5" ng-model="item.descricao" ng-show="$index==editar">
+      </td>
+      <td>
+        <div ng-hide="$index==editar">{{item.situacao}}</div>
+        <select ng-model="item.situacao" ng-show="$index==editar">
+          <option ng-repeat="situacao in situacoes" title="{{situacao.descricao}}" value="{{situacao.descricao}}">{{situacao.descricao}}</option>
+        </select>
+      </td>
+      <td>
+        <button ng-click="editarItem($index)" ng-hide="$index==editar">Editar</button>
+       <button ng-click="editarItem('item')" ng-show="$index==editar">Salvar</button>
+      </td>
+    </tr>
+  </table>
+
+
+<script src="http://code.angularjs.org/1.0.1/angular-1.0.1.min.js"></script>
