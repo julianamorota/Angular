@@ -14,13 +14,16 @@ function todo ($scope) {
       {descricao: "finalizada"}
     ];
     $scope.exibicao = ""; //deixar exibicao "todas" selecionado por default
+    $scope.edicao = true;
 
+    //verificar se há dados salvos em localStorage
     if(localStorage["toDo"]){
       $scope.itens = ('toDo: ', JSON.parse(localStorage.getItem('toDo')));
     }
     if(localStorage["toDoSituacao"]){
       $scope.situacoes = ('toDoSituacao: ', JSON.parse(localStorage.getItem('toDoSituacao')));
     }
+
 
     /*
     $scope.itens = ('toDo: ', JSON.parse(localStorage.getItem('toDo')));
@@ -56,7 +59,7 @@ function todo ($scope) {
      * @param {object} item  model de tarefa
      */
     $scope.editarItem = function(item){
-      $scope.editar = item;
+      $scope.edItem = item;
       localStorage.setItem('toDo', JSON.stringify($scope.itens));
     };
 
@@ -88,5 +91,15 @@ function todo ($scope) {
       $scope.situacoes = splice(situacao, 1);
       localStorage.setItem('toDoSituacao', JSON.stringify($scope.situacoes));
     };
+
+    /**
+     * @description  editar e salvar situacoes
+     * @param {object} situacao model de situacao
+     */
+    $scope.editarSituacao = function(situacao){
+      $scope.edSit = situacao;
+      localStorage.setItem('toDoSituacao', JSON.stringify($scope.situacoes));
+    };
+
 }
 })();
