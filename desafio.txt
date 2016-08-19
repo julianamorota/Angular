@@ -17,16 +17,16 @@ OK Tarefas pendentes devem possuir cor vermelha
 
 Desafio extra:
 
-Contador de total de tarefas por situação (pendente, finalizada e todas)
+OK Contador de total de tarefas por situação (pendente, finalizada e todas)
 OK Armazenar em localstorage
 OK Poder cadastrar mais situações
 OK Poder carregar dinamicamente mais situações na view (regra: se houver mais de 2 situações o elemento se torna um combobox)
 
 Outros:
 
-Substituir show,hide -> if
+OK Substituir show,hide -> if
 Substituir $index por causa da paginação (colocar id (guid pesquisar))
-Alterar/deletar situações
+Alterar/deletar situações sem buggar o filtro
 OK Arrumar quando array (em localstorage) for null
 
 <table>
@@ -59,14 +59,10 @@ OK Arrumar quando array (em localstorage) for null
 DESAFIO 
 Implementar o TODO criado na etapa anterior para exibir uma div/modal depois de 3 segundos ($timeout) com um link dentro dela para redirecionar ($location) para o site https://www.gitkraken.com/.
 
-
 Desafio extra
 
 Utilizar o $timeout para fechar as mensagens de sucesso e erro após 3 segundos
 Deixar configurável o tempo de fechamento das mensagens
-
-
-
 
 ------------------------------------------------------------------------------
 Desafio
@@ -76,10 +72,15 @@ Criar um service usando $http (estudar promises) para carregar uma lista inicial
 Criar um factory para remover os itens da lista
 Realizar a chamada do service no controller
 
-
 Desafio extra:
 Usar os dados do localstorage para carregar a lista inicial com o service (transformar em json)
 
+-----------------------------------------------------------------------------
+Desafio
+Utilizar value ou constant para configurar o caminho do JSON e chamar no service do TODO.
+-----------------------------------------------------------------------------
+Desafio
+Criar uma diretiva com escopo fechado utilizando template, que exiba a mensagem ao criar, editar e excluir um item do TODO.
 -----------------------------------------------------------------------------
 
 ******

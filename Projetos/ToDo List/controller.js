@@ -9,10 +9,7 @@ angular
 function todo ($scope) {
     $scope.app = "To-Do List"; //nome do app
     $scope.itens = [];
-    $scope.situacoes = [
-      {descricao: "pendente"},
-      {descricao: "finalizada"}
-    ];
+    $scope.situacoes = [];
     $scope.exibicao = ""; //deixar exibicao "todas" selecionado por default
     $scope.edicao = true;
 
@@ -24,14 +21,22 @@ function todo ($scope) {
       $scope.situacoes = ('toDoSituacao: ', JSON.parse(localStorage.getItem('toDoSituacao')));
     }
 
-
-    /*
-    $scope.itens = ('toDo: ', JSON.parse(localStorage.getItem('toDo')));
-    $scope.situacoes = ('toDoSituacao: ', JSON.parse(localStorage.getItem('toDoSituacao')));
-    */
-
-
     /**
+   * @description  retorna a qtd de vezes que a situação aparece nas tarefas
+   * @param {object} situacao descrição da situação
+   */
+    $scope.contaItens = function(situacao){
+      var cont = 0;
+      for (var i = 0, len = $scope.itens.length; i < len; i++)
+      {
+        //var teste = $scope.itens.descricao;
+        if ($scope.itens[i].situacao == situacao)
+          cont++;
+      }
+      return cont;
+    }
+
+      /**
      * @description  adiciona tarefas no array
      * @param {object} item  model de tarefa
      */
