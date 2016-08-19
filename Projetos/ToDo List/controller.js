@@ -9,7 +9,10 @@ angular
 function todo ($scope) {
     $scope.app = "To-Do List"; //nome do app
     $scope.itens = [];
-    $scope.situacoes = [];
+    $scope.situacoes = [
+      {descricao: "pendente"},
+      {descricao: "finalizada"}
+    ];
     $scope.exibicao = ""; //deixar exibicao "todas" selecionado por default
     $scope.edicao = true;
 
