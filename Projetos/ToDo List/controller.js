@@ -10,8 +10,8 @@ function todo ($scope) {
     $scope.app = "To-Do List"; //nome do app
     $scope.itens = [];
     $scope.situacoes = [
-      {descricao: "pendente"},
-      {descricao: "finalizada"}
+      {id: 0, descricao: "pendente"},
+      {id: 1, descricao: "finalizada"}
     ];
     $scope.exibicao = ""; //deixar exibicao "todas" selecionado por default
     $scope.edicao = true;
@@ -32,7 +32,6 @@ function todo ($scope) {
       var cont = 0;
       for (var i = 0, len = $scope.itens.length; i < len; i++)
       {
-        //var teste = $scope.itens.descricao;
         if ($scope.itens[i].situacao == situacao)
           cont++;
       }
@@ -44,7 +43,8 @@ function todo ($scope) {
      * @param {object} item  model de tarefa
      */
     $scope.adicionarItem = function(item){
-      item.situacao="pendente";
+	  item.id = $scope.itens.length-1;
+      item.situacao = "pendente";
       $scope.itens.push(angular.copy(item));
       $scope.item.descricao = "";
       localStorage.setItem('toDo', JSON.stringify($scope.itens));
@@ -66,7 +66,7 @@ function todo ($scope) {
      * @description  editar e salvar tarefas
      * @param {object} item  model de tarefa
      */
-    $scope.editarItem = function(item){
+    $scope.editarItem = function(id){
       $scope.edItem = item;
       localStorage.setItem('toDo', JSON.stringify($scope.itens));
     };
