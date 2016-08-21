@@ -78,6 +78,7 @@ function todo ($scope) {
      * @param {object} item  model de tarefa
      */
     $scope.editarItem = function(item){
+		console.log(item);
       $scope.edItem = item;
       localStorage.setItem('toDo', JSON.stringify($scope.itens));
     };
@@ -97,26 +98,51 @@ function todo ($scope) {
     * @param {object} situacao  model de situacao
     */
     $scope.adicionarSituacao = function(situacao) {
-	  situacao.id = guid();
-      $scope.situacoes.push(angular.copy(situacao));
-      $scope.situacao.descricao = "";
-      localStorage.setItem('toDoSituacao', JSON.stringify($scope.situacoes));
+	  var igual = false;
+	  for (var i = 0, len = $scope.situacoes.length; i < len; i++)
+      {
+        if ($scope.situacoes[i].descricao == situacao.descricao)
+			igual = true;
+		
+      }
+	  if(!igual)
+	  {
+		situacao.id = guid();
+		  $scope.situacoes.push(angular.copy(situacao));
+		  $scope.situacao.descricao = "";
+		  localStorage.setItem('toDoSituacao', JSON.stringify($scope.situacoes));  
+	  }
+	  else
+		  alert("Ja existe uma situacao cadastrada com esse nome.");
+	  
     };
 
     /**
     * @description excluir situação
     * @param {object} situacao  model de situacao
     */
-    $scope.excluirSituacao = function(id) {
-	  for (var i = 0, len = $scope.situacoes.length; i < len; i++)
+    $scope.excluirSituacao = function(situacao) {
+	  var existe = false;
+	  for (var i = 0, len = $scope.itens.length; i < len; i++)
       {
-        if ($scope.situacoes[i].id == id)
+        if ($scope.itens[i].situacao == situacao.descricao)
+			existe = true;
+      }
+	  if(!existe)
+	  {
+		for (var i = 0, len = $scope.situacoes.length; i < len; i++)
+		{
+        if ($scope.situacoes[i].id == situacao.id)
 		{
 			$scope.situacoes.splice(i, 1);
 			break;
 		}
       }
       localStorage.setItem('toDoSituacao', JSON.stringify($scope.situacoes));
+	  }
+	  else
+		  alert("Nao foi possivel apagar pois uma tarefa esta cadastrada com essa situacao.");
+	  
     };
 
     /**
@@ -128,5 +154,11 @@ function todo ($scope) {
 	  $scope.situacao.descricao = $situacao.descricao;
       localStorage.setItem('toDoSituacao', JSON.stringify($scope.situacoes));
     };
+	
+	$scope.teste = function(){
+		console.log($scope.situacoes);
+		console.log($scope.itens);
+		
+	}
 }
 })();

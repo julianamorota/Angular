@@ -34,7 +34,7 @@
         </td>
         <td> {{contaItens(situacao.descricao)}} </td>
         <td>
-          <button ng-click="excluirSituacao(situacao.id)">Excluir</button>
+          <button ng-click="excluirSituacao(situacao)">Excluir</button>
 
          
         </td>
@@ -59,7 +59,7 @@
       <td>
         <div ng-if="!(item.id==edItem)">{{item.situacao}}</div>
         <select ng-model="item.situacao" ng-if="item.id==edItem">
-          <option ng-repeat="situacao in situacoes" title="{{situacao.descricao}}" value="{{situacao.descricao}}">{{situacao.descricao}}</option>
+          <option ng-repeat="situacao in situacoes" title="{{situacao.descricao}}" value="{{situacao.descricao}}" id="{{situacao.id}}">{{situacao.descricao}}</option>
         </select>
       </td>
       <td>
@@ -76,7 +76,7 @@
     <input type="text" ng-model="situacao.descricao"><br>
     <button ng-click="adicionarSituacao(situacao)" ng-disabled="!situacao.descricao">Ok</button>
     <br>
-
+	
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.js"></script>
     <script src="module.js"></script>
     <script src="controller.js"></script>

@@ -25,35 +25,10 @@ OK Poder carregar dinamicamente mais situações na view (regra: se houver mais de
 Outros:
 
 OK Substituir show,hide -> if
-Substituir $index por causa da paginação (colocar id (guid pesquisar))
-Alterar/deletar situações sem buggar o filtro
-OK Arrumar quando array (em localstorage) for null
+OK Substituir $index por causa da paginação (colocar id (guid pesquisar))
++- Alterar/deletar situações sem buggar o filtro
+OK Arrumar quando localstorage null
 
-<table>
-      <tr>
-        <th> Situacao </th>
-        <th> Qtd </th>
-        <th> Opcao </th>
-      </tr>
-
-      <tr>
-        <td>  <input type="radio" name="item" value="" ng-model="exibicao">todas </td>
-        <td> {{itens.length}} </td>
-      </tr>
-
-      <tr ng-repeat="situacao in situacoes track by $index">
-        <td>
-
-            <input type="radio" name="item" value="{{situacao.descricao}}" ng-model="$parent.exibicao">{{situacao.descricao}}
-        </td>
-        <td><!--COLOCAR QTDDD--> </td>
-        <td>
-          <button ng-click="excluirSituacao()">Excluir</button>
-          <button ng-click="editarSituacao($index)" ng-if="!($index==edSit)">Editar</button>
-          <button ng-click="editarSituacao('sit')" ng-if="$index==edSit">Salvar</button>
-        </td>
-      </tr>
-    </table>
 
 -----------------------------------------------------------------------------
 DESAFIO 
@@ -85,7 +60,5 @@ Criar uma diretiva com escopo fechado utilizando template, que exiba a mensagem 
 
 ******
 -ver developer tools
--tentar entender meu código de angular
 -ver Iif
 http://imasters.com.br/front-end/javascript/sobre-funcoes-imediatas-javascript-iife/?trace=1519021197&source=single
-Arrumar quando array (em localstorage) for null
