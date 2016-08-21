@@ -28,13 +28,13 @@
         <td> {{itens.length}} </td>
       </tr>
     
-      <tr ng-repeat="situacao in situacoes track by $index" ng-repeat="item in itens | filter: {situacao: situacao.descricao} as filtered">
+      <tr ng-repeat="situacao in situacoes track by situacao.id" ng-repeat="item in itens | filter: {situacao: situacao.descricao} as filtered">
         <td>
             <input type="radio" name="item" value="{{situacao.descricao}}" ng-model="$parent.exibicao">{{situacao.descricao}}
         </td>
         <td> {{contaItens(situacao.descricao)}} </td>
         <td>
-          <button ng-click="excluirSituacao()">Excluir</button>
+          <button ng-click="excluirSituacao(situacao.id)">Excluir</button>
 
          
         </td>
@@ -50,21 +50,21 @@
       <th> Opcao </th>
     </tr>
 
-    <tr ng-repeat="item in itens | filter: {situacao: exibicao} track by $index" ng-class="{red: item.situacao=='pendente'}">
+    <tr ng-repeat="item in itens | filter: {situacao: exibicao} track by item.id" ng-class="{red: item.situacao=='pendente'}">
       <td><input type="checkbox" ng-model="item.selecionado"/></td>
       <td>
-        <div ng-if="!($index==edItem)">{{item.descricao}}</div>
-        <input type="text" size="5" ng-model="item.descricao" ng-if="$index==edItem">
+        <div ng-if="!(item.id==edItem)">{{item.descricao}}</div>
+        <input type="text" size="5" ng-model="item.descricao" ng-if="item.id==edItem">
       </td>
       <td>
-        <div ng-if="!($index==edItem)">{{item.situacao}}</div>
-        <select ng-model="item.situacao" ng-if="$index==edItem">
+        <div ng-if="!(item.id==edItem)">{{item.situacao}}</div>
+        <select ng-model="item.situacao" ng-if="item.id==edItem">
           <option ng-repeat="situacao in situacoes" title="{{situacao.descricao}}" value="{{situacao.descricao}}">{{situacao.descricao}}</option>
         </select>
       </td>
       <td>
-        <button ng-click="editarItem($index)" ng-if="!($index==edItem)">Editar</button>
-       <button ng-click="editarItem('item')" ng-if="$index==edItem">Salvar</button>
+        <button ng-click="editarItem(item.id)" ng-if="!(item.id==edItem)">Editar</button>
+       <button ng-click="editarItem('item')" ng-if="item.id==edItem">Salvar</button>
       </td>
     </tr>
   </table>

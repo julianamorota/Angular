@@ -7,11 +7,21 @@ angular
   angular.$inject = ['$scope'];
 
 function todo ($scope) {
-    $scope.app = "To-Do List"; //nome do app
+    function guid() {
+	  function s4() {
+		return Math.floor((1 + Math.random()) * 0x10000)
+		  .toString(16)
+		  .substring(1);
+	  }
+	  return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+		s4() + '-' + s4() + s4() + s4();
+	}
+	
+	$scope.app = "To-Do List"; //nome do app
     $scope.itens = [];
     $scope.situacoes = [
-      {id: 0, descricao: "pendente"},
-      {id: 1, descricao: "finalizada"}
+      {id: guid(), descricao: "pendente"},
+      {id: guid(), descricao: "finalizada"}
     ];
     $scope.exibicao = ""; //deixar exibicao "todas" selecionado por default
     $scope.edicao = true;
@@ -23,9 +33,10 @@ function todo ($scope) {
     if(localStorage["toDoSituacao"]){
       $scope.situacoes = ('toDoSituacao: ', JSON.parse(localStorage.getItem('toDoSituacao')));
     }
-
+	
+	
     /**
-   * @description  retorna a qtd de vezes que a situação aparece nas tarefas
+   * @description retorna a qtd de vezes que a situação aparece nas tarefas
    * @param {object} situacao descrição da situação
    */
     $scope.contaItens = function(situacao){
@@ -38,12 +49,12 @@ function todo ($scope) {
       return cont;
     }
 
-      /**
-     * @description  adiciona tarefas no array
+    /**
+     * @description adiciona tarefas no array
      * @param {object} item  model de tarefa
      */
     $scope.adicionarItem = function(item){
-	  item.id = $scope.itens.length-1;
+	  item.id = guid();
       item.situacao = "pendente";
       $scope.itens.push(angular.copy(item));
       $scope.item.descricao = "";
@@ -51,7 +62,7 @@ function todo ($scope) {
     };
 
   /**
-   * @description  exclui tarefa(s) selecionada(s) atraves do checkbox
+   * @description exclui tarefa(s) selecionada(s) atraves do checkbox
    * @param {object} itens  model de tarefas
    */
     $scope.excluirItem = function(itens){
@@ -63,16 +74,16 @@ function todo ($scope) {
     }
 
     /**
-     * @description  editar e salvar tarefas
+     * @description editar e salvar tarefas
      * @param {object} item  model de tarefa
      */
-    $scope.editarItem = function(id){
+    $scope.editarItem = function(item){
       $scope.edItem = item;
       localStorage.setItem('toDo', JSON.stringify($scope.itens));
     };
 
      /**
-     * @description  verificar se tem, pelo menos, um item selecionado na tabela
+     * @description verificar se tem, pelo menos, um item selecionado na tabela
      * @param {object} itens  model de tarefas
      */
     $scope.isItemSelecionado = function(itens) {
@@ -82,32 +93,40 @@ function todo ($scope) {
   	};
 
     /**
-    * @description  cadastro de situação
+    * @description cadastro de situação
     * @param {object} situacao  model de situacao
     */
     $scope.adicionarSituacao = function(situacao) {
+	  situacao.id = guid();
       $scope.situacoes.push(angular.copy(situacao));
       $scope.situacao.descricao = "";
       localStorage.setItem('toDoSituacao', JSON.stringify($scope.situacoes));
     };
 
     /**
-    * @description  excluir situação
+    * @description excluir situação
     * @param {object} situacao  model de situacao
     */
-    $scope.excluirSituacao = function(situacao) {
-      $scope.situacoes = splice(situacao, 1);
+    $scope.excluirSituacao = function(id) {
+	  for (var i = 0, len = $scope.situacoes.length; i < len; i++)
+      {
+        if ($scope.situacoes[i].id == id)
+		{
+			$scope.situacoes.splice(i, 1);
+			break;
+		}
+      }
       localStorage.setItem('toDoSituacao', JSON.stringify($scope.situacoes));
     };
 
     /**
-     * @description  editar e salvar situacoes
+     * @description editar e salvar situacoes
      * @param {object} situacao model de situacao
      */
     $scope.editarSituacao = function(situacao){
       $scope.edSit = situacao;
+	  $scope.situacao.descricao = $situacao.descricao;
       localStorage.setItem('toDoSituacao', JSON.stringify($scope.situacoes));
     };
-
 }
 })();
