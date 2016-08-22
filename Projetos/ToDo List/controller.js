@@ -6,7 +6,7 @@ angular
   .controller("toDoListCtrl", todo);
   angular.$inject = ['$scope'];
 
-  function todo ($scope) {
+  function todo ($scope, $timeout) {
     //nome do app
     $scope.app = "To-Do List";
     $scope.itens = [];
@@ -140,7 +140,10 @@ angular
         else{
           alert("Nao foi possivel apagar pois uma tarefa esta cadastrada com essa situacao.");
         }
-
       };
+
+      $timeout(function(){
+        $scope.gitkraken = "GitKraken";
+      }, 3000);
   }
 })();

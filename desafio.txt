@@ -32,7 +32,7 @@ OK Arrumar quando localstorage null
 
 -----------------------------------------------------------------------------
 DESAFIO 
-Implementar o TODO criado na etapa anterior para exibir uma div/modal depois de 3 segundos ($timeout) com um link dentro dela para redirecionar ($location) para o site https://www.gitkraken.com/.
+OK Implementar o TODO criado na etapa anterior para exibir uma div/modal depois de 3 segundos ($timeout) com um link dentro dela para redirecionar ($location) para o site https://www.gitkraken.com/.
 
 Desafio extra
 
@@ -62,3 +62,31 @@ Criar uma diretiva com escopo fechado utilizando template, que exiba a mensagem 
 -ver developer tools
 -ver Iif
 http://imasters.com.br/front-end/javascript/sobre-funcoes-imediatas-javascript-iife/?trace=1519021197&source=single
+
+
+  /**
+    * @description excluir situação (fazendo verificação se já existe tarefa cadastrada)
+    * @param {object} situacao  model de situacao
+    */
+    $scope.excluirSituacao = function(situacao) {
+      var existe = false;
+      for (var i = 0, len = $scope.itens.length; i < len; i++)
+      {
+        if ($scope.itens[i].situacao == situacao.descricao)
+      	 existe = true;
+      }
+      if(!existe)
+      {
+        for (var i = 0, len = $scope.situacoes.length; i < len; i++)
+        {
+          if ($scope.situacoes[i].id == situacao.id)
+          {
+      	     $scope.situacoes.splice(i, 1);
+             break;
+          }
+        }
+        localStorage.setItem('toDoSituacao', JSON.stringify($scope.situacoes));
+      }
+      else
+        alert("Nao foi possivel apagar pois uma tarefa esta cadastrada com essa situacao.");
+    };
