@@ -6,7 +6,7 @@ angular
   .controller("toDoListCtrl", todo);
   angular.$inject = ['$scope'];
 
-  function todo ($scope, $timeout) {
+  function todo ($scope, $timeout, $window) {
     //nome do app
     $scope.app = "To-Do List";
     $scope.itens = [];
@@ -159,8 +159,15 @@ angular
       * @description mostrar o link do site gitkraken depois de 3 segundos
       */
       $timeout(function(){
-        $scope.gitkraken = "GitKraken";
+        $scope.gitkraken = "Git Kraken";
       }, 3000);
+
+      $scope.redireciona = function(){
+
+         $window.location.href = 'https://www.gitkraken.com';
+
+
+      }
 
     /**
       * @description excluir situação (fazendo verificação se já existe tarefa cadastrada)
