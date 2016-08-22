@@ -32,7 +32,7 @@ OK Arrumar quando localstorage null
 
 -----------------------------------------------------------------------------
 DESAFIO 
-+ -Implementar o TODO criado na etapa anterior para exibir uma div/modal depois de 3 segundos ($timeout) com um link dentro dela para redirecionar 
++-Implementar o TODO criado na etapa anterior para exibir uma div/modal depois de 3 segundos ($timeout) com um link dentro dela para redirecionar 
 ($location) para o site https://www.gitkraken.com/.
 
 Desafio extra
@@ -41,6 +41,10 @@ OK Utilizar o $timeout para fechar as mensagens de sucesso e erro após 3 segundo
 OK Deixar configurável o tempo de fechamento das mensagens
 
 ------------------------------------------------------------------------------
+https://bognarjunior.wordpress.com/2016/03/06/angularjs-services-e-factories/
+http://tableless.com.br/angular-js-service-x-factory/
+http://blog.concretesolutions.com.br/2015/03/angularjs-quando-usar-service-e-factory/
+
 Desafio
 Requisitos:
 
