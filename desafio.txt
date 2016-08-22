@@ -36,8 +36,8 @@ OK Implementar o TODO criado na etapa anterior para exibir uma div/modal depois 
 
 Desafio extra
 
-Utilizar o $timeout para fechar as mensagens de sucesso e erro após 3 segundos
-Deixar configurável o tempo de fechamento das mensagens
+OK Utilizar o $timeout para fechar as mensagens de sucesso e erro após 3 segundos
+OK Deixar configurável o tempo de fechamento das mensagens
 
 ------------------------------------------------------------------------------
 Desafio
@@ -56,6 +56,7 @@ Utilizar value ou constant para configurar o caminho do JSON e chamar no service
 -----------------------------------------------------------------------------
 Desafio
 Criar uma diretiva com escopo fechado utilizando template, que exiba a mensagem ao criar, editar e excluir um item do TODO.
+https://github.com/angular-ui/bootstrap/blob/master/src/alert/alert.js#L22-L31
 -----------------------------------------------------------------------------
 
 ******

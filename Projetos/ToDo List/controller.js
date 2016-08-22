@@ -17,6 +17,8 @@ angular
     ];
     //deixar exibicao "todas" selecionado por default
     $scope.exibicao = "";
+    //div msg hide
+    $scope.msg = true;
 
     //verificar se há dados salvos em localStorage
     if(localStorage["toDo"]){
@@ -24,6 +26,14 @@ angular
     }
     if(localStorage["toDoSituacao"]){
       $scope.situacoes = ('toDoSituacao: ', JSON.parse(localStorage.getItem('toDoSituacao')));
+    }
+
+    if(localStorage["configTemp"]){
+        $scope.tempo = ('configTemp: ', JSON.parse(localStorage.getItem('configTemp')));
+    }
+    //default 3 segundos
+    else{
+      $scope.tempo = 3000;
     }
 
   /**
@@ -38,7 +48,6 @@ angular
     return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
     s4() + '-' + s4() + s4() + s4();
   };
-
 
   /**
   * @description retorna a qtd de vezes que a situação aparece nas tarefas
@@ -64,6 +73,7 @@ angular
       $scope.itens.push(angular.copy(item));
       $scope.item.descricao = "";
       localStorage.setItem('toDo', JSON.stringify($scope.itens));
+      $scope.alerta("Cadastro de tarefa realizado com sucesso!");
     };
 
   /**
@@ -75,6 +85,7 @@ angular
         if(!item.selecionado) return item;
       });
       localStorage.setItem('toDo', JSON.stringify($scope.itens));
+      $scope.alerta("Exclusao de tarefa realizada com sucesso!");
     };
 
   /**
@@ -113,10 +124,11 @@ angular
         $scope.situacoes.push(angular.copy(situacao));
         $scope.situacao.descricao = "";
         localStorage.setItem('toDoSituacao', JSON.stringify($scope.situacoes));
+        $scope.alerta("Cadastro de situacao realizado com sucesso.");
       }
-      else
-        alert("Ja existe uma situacao cadastrada com esse nome.");
-
+      else{
+        $scope.alerta("Ja existe uma situacao cadastrada com esse nome.");
+      }
     };
 
     /**
@@ -126,7 +138,7 @@ angular
       $scope.excluirSituacao = function(situacao) {
         var existe = false;
         for (var i = 0, len = $scope.itens.length; i < len; i++){
-          if ($scope.itens[i].situacao == situacao.descricao) existe = true;
+          if ($scope.itens[i].situacao === situacao.descricao) existe = true;
         }
         if(!existe){
           for (var i = 0, len = $scope.situacoes.length; i < len; i++){
@@ -136,14 +148,37 @@ angular
             }
           }
           localStorage.setItem('toDoSituacao', JSON.stringify($scope.situacoes));
+          $scope.alerta("Exclusao de situacao realizada com sucesso.");
         }
         else{
-          alert("Nao foi possivel apagar pois uma tarefa esta cadastrada com essa situacao.");
+          $scope.alerta("Nao foi possivel apagar pois uma tarefa esta cadastrada com essa situacao.");
         }
       };
 
+    /**
+      * @description mostrar o link do site gitkraken depois de 3 segundos
+      */
       $timeout(function(){
         $scope.gitkraken = "GitKraken";
       }, 3000);
+
+    /**
+      * @description excluir situação (fazendo verificação se já existe tarefa cadastrada)
+      * @param {object} mensagem mensagem a ser exibida
+      */
+      $scope.configTemp = function(){
+        localStorage.setItem('configTemp', JSON.stringify($scope.tempo));
+        $scope.alerta("Configuracao de tempo cadastrada com sucesso");
+      };
+
+    /**
+      * @description excluir situação (fazendo verificação se já existe tarefa cadastrada)
+      * @param {object} mensagem mensagem a ser exibida
+      */
+      $scope.alerta = function(mensagem){
+        $scope.msg = false;
+        $scope.mensagem = mensagem;
+        $timeout(function(){ $scope.msg = true;}, $scope.tempo);
+      };
   }
 })();
