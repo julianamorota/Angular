@@ -3,10 +3,10 @@
   <head>
     <title>ToDo List</title>
   	<style type="text/css">
-  	.red {
-      color: red;
-  	}
-  </style>
+    	.red {
+        color: red;
+    	}
+    </style>
   </head>
 
   <body ng-controller="toDoListCtrl">
@@ -22,12 +22,10 @@
         <th> Qtd </th>
         <th> Opcao </th>
       </tr>
-
       <tr>
         <td>  <input type="radio" name="item" value="" ng-model="exibicao">todas </td>
         <td> {{itens.length}} </td>
       </tr>
-    
       <tr ng-repeat="situacao in situacoes track by situacao.id" ng-repeat="item in itens | filter: {situacao: situacao.descricao} as filtered">
         <td>
             <input type="radio" name="item" value="{{situacao.descricao}}" ng-model="$parent.exibicao">{{situacao.descricao}}
@@ -35,8 +33,6 @@
         <td> {{contaItens(situacao.descricao)}} </td>
         <td>
           <button ng-click="excluirSituacao(situacao)">Excluir</button>
-
-         
         </td>
       </tr>
     </table>
@@ -49,7 +45,6 @@
       <th> Situacao </th>
       <th> Opcao </th>
     </tr>
-
     <tr ng-repeat="item in itens | filter: {situacao: exibicao} track by item.id" ng-class="{red: item.situacao=='pendente'}">
       <td><input type="checkbox" ng-model="item.selecionado"/></td>
       <td>
@@ -76,7 +71,7 @@
     <input type="text" ng-model="situacao.descricao"><br>
     <button ng-click="adicionarSituacao(situacao)" ng-disabled="!situacao.descricao">Ok</button>
     <br>
-	
+
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.js"></script>
     <script src="module.js"></script>
     <script src="controller.js"></script>
