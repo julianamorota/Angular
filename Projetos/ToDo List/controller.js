@@ -5,8 +5,15 @@ angular
   .module('toDoList')
   .controller("toDoListCtrl", todo);
   angular.$inject = ['$scope'];
+  angular.$inject = ['$timeout'];
+  angular.$inject = ['$window'];
+  angular.$inject = ['ListaInicial'];
 
-  function todo ($scope, $timeout, $window) {
+  function todo ($scope, $timeout, $window, ListaInicial) {
+
+    ListaInicial.leLista();
+
+
     //nome do app
     $scope.app = "To-Do List";
     $scope.itens = [];
@@ -35,6 +42,8 @@ angular
     else{
       $scope.tempo = 3000;
     }
+
+
 
   /**
   * @description gera um guid para tarefa e situacao
