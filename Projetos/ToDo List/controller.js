@@ -27,11 +27,11 @@ angular
     if(localStorage["toDoSituacao"]){
       $scope.situacoes = ('toDoSituacao: ', JSON.parse(localStorage.getItem('toDoSituacao')));
     }
-
+    //verifica se há dados salvos em localstorage sobre o tempo de exibição das mensagens na tela
     if(localStorage["configTemp"]){
         $scope.tempo = ('configTemp: ', JSON.parse(localStorage.getItem('configTemp')));
     }
-    //default 3 segundos
+    //se não existe, default 3 segundos
     else{
       $scope.tempo = 3000;
     }
@@ -162,16 +162,15 @@ angular
         $scope.gitkraken = "Git Kraken";
       }, 3000);
 
+      /**
+        * @description redirecionar para o site gitkraken
+        */
       $scope.redireciona = function(){
-
          $window.location.href = 'https://www.gitkraken.com';
-
-
       }
 
     /**
-      * @description excluir situação (fazendo verificação se já existe tarefa cadastrada)
-      * @param {object} mensagem mensagem a ser exibida
+      * @description cadastro do tempo que as mensagens serão exibidas
       */
       $scope.configTemp = function(){
         localStorage.setItem('configTemp', JSON.stringify($scope.tempo));
@@ -179,7 +178,7 @@ angular
       };
 
     /**
-      * @description excluir situação (fazendo verificação se já existe tarefa cadastrada)
+      * @description exibir mensagens na tela (erro/sucesso) baseado no tempo cadastrado
       * @param {object} mensagem mensagem a ser exibida
       */
       $scope.alerta = function(mensagem){
