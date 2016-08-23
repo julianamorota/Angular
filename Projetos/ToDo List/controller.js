@@ -11,9 +11,6 @@ angular
 
   function todo ($scope, $timeout, $window, ListaInicial) {
 
-    ListaInicial.leLista();
-
-
     //nome do app
     $scope.app = "To-Do List";
     $scope.itens = [];
@@ -31,6 +28,18 @@ angular
     if(localStorage["toDo"]){
       $scope.itens = ('toDo: ', JSON.parse(localStorage.getItem('toDo')));
     }
+	//se não houver dados salvos em localstorage, ele salva uma lista inicial
+	else{
+		ListaInicial.obtemLista()
+		.then(
+			function(result){
+				$scope.itens = result;
+			},
+			function(error){
+				$scope.alerta("Erro ao carregar lista inicial");
+			}
+		);
+	}
     if(localStorage["toDoSituacao"]){
       $scope.situacoes = ('toDoSituacao: ', JSON.parse(localStorage.getItem('toDoSituacao')));
     }
@@ -42,8 +51,6 @@ angular
     else{
       $scope.tempo = 3000;
     }
-
-
 
   /**
   * @description gera um guid para tarefa e situacao
