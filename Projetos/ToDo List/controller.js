@@ -7,10 +7,12 @@ angular
   angular.$inject = ['$scope'];
   angular.$inject = ['$timeout'];
   angular.$inject = ['$window'];
-  angular.$inject = ['ListaInicial'];
+  angular.$inject = ['listarService'];
+  angular.$inject = ['removeItensFactory'];
 
-  function todo ($scope, $timeout, $window, ListaInicial) {
+  function todo ($scope, $timeout, $window, listarService, removeItensFactory) {
 
+	
     //nome do app
     $scope.app = "To-Do List";
     $scope.itens = [];
@@ -30,7 +32,7 @@ angular
     }
 	//se não houver dados salvos em localstorage, ele salva uma lista inicial
 	else{
-		ListaInicial.obtemLista()
+		listarService.obtemLista()
 		.then(
 			function(result){
 				$scope.itens = result;
@@ -97,9 +99,13 @@ angular
   * @param {object} itens  model de tarefas
   */
     $scope.excluirItem = function(itens){
-      $scope.itens = itens.filter(function(item){
-        if(!item.selecionado) return item;
-      });
+	  for (var i = 0, len = itens.length; i < len; i++)
+      {
+        if (itens[i].selecionado === true){
+			removeItensFactory.removerItem(itens, itens[i].id);
+			break;
+		}
+      }
       localStorage.setItem('toDo', JSON.stringify($scope.itens));
       $scope.alerta("Exclusao de tarefa realizada com sucesso!");
     };
