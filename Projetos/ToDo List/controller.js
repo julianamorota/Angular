@@ -2,11 +2,16 @@
 'use strict';
 
 angular
+
   .module('toDoList')
   .controller("toDoListCtrl", todo);
   angular.$inject = ['$scope', '$timeout','$window','listarService', 'removeItensFactory'];
 
   function todo ($scope, $timeout, $window, listarService, removeItensFactory) {
+  $scope.teste = function(){
+    $('.toast').hide();
+  }
+
     //nome do app
     $scope.app = "To-Do List";
     $scope.itens = [];

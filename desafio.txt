@@ -1,64 +1,4 @@
-Desafio
-Campos:
-
-Descrição: input text
-Situação (pendente/finalizada): radio button
-
-Requisitos:
-
-OK Cadastrar uma tarefa
-OK Exibir listagem de tarefas cadastras (descrição e situação)
-OK Título do TODO list como one databind (variável no escopo para apresentar na view)
-OK Excluir uma tarefa cadastrada
-OK Editar uma tarefa cadastrada.
-OK Botão que exibe somente as tarefas finalizadas
-OK Tarefas pendentes devem possuir cor vermelha
-
-
-Desafio extra:
-
-OK Contador de total de tarefas por situação (pendente, finalizada e todas)
-OK Armazenar em localstorage
-OK Poder cadastrar mais situações
-OK Poder carregar dinamicamente mais situações na view (regra: se houver mais de 2 situações o elemento se torna um combobox)
-
-Outros:
-
-OK Substituir show,hide -> if
-OK Substituir $index por causa da paginação (colocar id (guid pesquisar))
-+- Alterar/deletar situações sem buggar o filtro
-OK Arrumar quando localstorage null
-
-
------------------------------------------------------------------------------
-DESAFIO 
-+-Implementar o TODO criado na etapa anterior para exibir uma div/modal depois de 3 segundos ($timeout) com um link dentro dela para redirecionar 
-($location) para o site https://www.gitkraken.com/.
-
-Desafio extra
-
-OK Utilizar o $timeout para fechar as mensagens de sucesso e erro após 3 segundos
-OK Deixar configurável o tempo de fechamento das mensagens
-
-------------------------------------------------------------------------------
-https://bognarjunior.wordpress.com/2016/03/06/angularjs-services-e-factories/
-http://tableless.com.br/angular-js-service-x-factory/
-http://blog.concretesolutions.com.br/2015/03/angularjs-quando-usar-service-e-factory/
-
-Desafio
-Requisitos:
-
-Criar um service usando $http (estudar promises) para carregar uma lista inicial do TODO (chamar arquivo json)
-Criar um factory para remover os itens da lista
-Realizar a chamada do service no controller
-
-Desafio extra:
-Usar os dados do localstorage para carregar a lista inicial com o service (transformar em json)
-
------------------------------------------------------------------------------
-Desafio
-Utilizar value ou constant para configurar o caminho do JSON e chamar no service do TODO.
------------------------------------------------------------------------------
+https://www.youtube.com/watch?v=D5aWZCxhi5o ** ESSE DAQUI FALA SOBRE LINK
 Desafio
 Criar uma diretiva com escopo fechado utilizando template, que exiba a mensagem ao criar, editar e excluir um item do TODO.
 https://github.com/angular-ui/bootstrap/blob/master/src/alert/alert.js#L22-L31
@@ -69,3 +9,21 @@ https://github.com/angular-ui/bootstrap/blob/master/src/alert/alert.js#L22-L31
 -ver Iif
 http://imasters.com.br/front-end/javascript/sobre-funcoes-imediatas-javascript-iife/?trace=1519021197&source=single
 
+http://plnkr.co/edit/ecbCA7h2zVA4XnvUHfFX?p=preview
+https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.js
+
+
+<inject-into-scope-directive inject-foo="'i am foo'" inject-bar="'hello from bar'" some-other-attribute="'hello there'"></inject-into-scope-directive>
+
+app.directive('injectIntoScopeDirective', function(){
+  return {
+    restrict: 'E',
+    scope: {
+      injectedfoo:'=injectFoo',
+      injectedbar:'=injectBar'
+    },
+    templateUrl: 'inject.tpl.html',
+    link: function(scope, elem, attrs){
+    }
+  }
+});
