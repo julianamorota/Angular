@@ -5,27 +5,27 @@ angular
   .module('toDoList')
   .service('listarService', listarService);
 
-  angular.$inject = ['$http'];
-  angular.$inject = ['$q'];
+  angular.$inject = ['$http','$q', 'caminhoJson'];
 
-  function listarService($http, $q){
+  function listarService($http, $q, caminhoJson){
 
-	//promessa a ser retornada
-	var promessa = $q.defer();
+  	//promessa a ser retornada
+  	var promessa = $q.defer();
 
-	this.obtemLista = function(){
-		return $http.get("https://api.myjson.com/bins/2krxz")
-			.then(function(response){
-				//promessa cumprida
-				promessa.resolve(response.data);
-				return promessa.promise;
+  	this.obtemLista = function(){
 
-			}, function(response){
-				//promessa negada
-				promessa.reject(response);
-				return promessa.promise;
-			})
-		;
-	};
+      return $http.get(caminhoJson)
+  			.then(function(response){
+  				//promessa cumprida
+  				promessa.resolve(response.data);
+  				return promessa.promise;
+
+  			}, function(response){
+  				//promessa negada
+  				promessa.reject(response);
+  				return promessa.promise;
+  			})
+  		;
+  	};
   }
 })();

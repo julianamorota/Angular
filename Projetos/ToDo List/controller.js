@@ -4,11 +4,7 @@
 angular
   .module('toDoList')
   .controller("toDoListCtrl", todo);
-  angular.$inject = ['$scope'];
-  angular.$inject = ['$timeout'];
-  angular.$inject = ['$window'];
-  angular.$inject = ['listarService'];
-  angular.$inject = ['removeItensFactory'];
+  angular.$inject = ['$scope', '$timeout','$window','listarService', 'removeItensFactory'];
 
   function todo ($scope, $timeout, $window, listarService, removeItensFactory) {
     //nome do app
