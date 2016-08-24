@@ -11,8 +11,6 @@ angular
   angular.$inject = ['removeItensFactory'];
 
   function todo ($scope, $timeout, $window, listarService, removeItensFactory) {
-
-	
     //nome do app
     $scope.app = "To-Do List";
     $scope.itens = [];
@@ -96,13 +94,13 @@ angular
 
   /**
   * @description exclui tarefa(s) selecionada(s) atraves do checkbox
-  * @param {object} itens  model de tarefas
+  * @param {object} itens  model de tarefa
   */
     $scope.excluirItem = function(item){
 	  removeItensFactory.removerItem($scope.itens, item.id);
 	  localStorage.setItem('toDo', JSON.stringify($scope.itens));
 	  $scope.alerta("Exclusao de tarefa realizada com sucesso!");
-      
+
     };
 
   /**

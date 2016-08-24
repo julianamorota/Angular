@@ -12,14 +12,14 @@ angular
 
 	//promessa a ser retornada
 	var promessa = $q.defer();
-	
+
 	this.obtemLista = function(){
 		return $http.get("https://api.myjson.com/bins/2krxz")
 			.then(function(response){
 				//promessa cumprida
 				promessa.resolve(response.data);
 				return promessa.promise;
-				
+
 			}, function(response){
 				//promessa negada
 				promessa.reject(response);
