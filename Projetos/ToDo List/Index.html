@@ -45,13 +45,11 @@
 
   <table>
     <tr>
-      <th></th>
       <th> Descricao </th>
       <th> Situacao </th>
       <th> Opcao </th>
     </tr>
     <tr ng-repeat="item in itens | filter: {situacao: exibicao} track by item.id" ng-class="{red: item.situacao=='pendente'}">
-      <td><input type="checkbox" ng-model="item.selecionado"/></td>
       <td>
         <div ng-if="!(item.id==edItem)">{{item.descricao}}</div>
         <input type="text" size="5" ng-model="item.descricao" ng-if="item.id==edItem">
@@ -65,11 +63,10 @@
       <td>
         <button ng-click="editarItem(item.id)" ng-if="!(item.id==edItem)">Editar</button>
        <button ng-click="editarItem('item')" ng-if="item.id==edItem">Salvar</button>
+	   <button ng-click="excluirItem(item)">Excluir</button>
       </td>
     </tr>
   </table>
-
-    <button class="btn" ng-click="excluirItem(itens)" ng-disabled="!isItemSelecionado(itens)">Excluir</button>
     <hr/>
 
     Cadastro de situacao: <br>

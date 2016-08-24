@@ -98,16 +98,11 @@ angular
   * @description exclui tarefa(s) selecionada(s) atraves do checkbox
   * @param {object} itens  model de tarefas
   */
-    $scope.excluirItem = function(itens){
-	  for (var i = 0, len = itens.length; i < len; i++)
-      {
-        if (itens[i].selecionado === true){
-			removeItensFactory.removerItem(itens, itens[i].id);
-			break;
-		}
-      }
-      localStorage.setItem('toDo', JSON.stringify($scope.itens));
-      $scope.alerta("Exclusao de tarefa realizada com sucesso!");
+    $scope.excluirItem = function(item){
+	  removeItensFactory.removerItem($scope.itens, item.id);
+	  localStorage.setItem('toDo', JSON.stringify($scope.itens));
+	  $scope.alerta("Exclusao de tarefa realizada com sucesso!");
+      
     };
 
   /**
@@ -117,16 +112,6 @@ angular
     $scope.editarItem = function(item){
       $scope.edItem = item;
       localStorage.setItem('toDo', JSON.stringify($scope.itens));
-    };
-
-   /**
-   * @description verificar se existe, pelo menos, um item selecionado na tabela
-   * @param {object} itens  model de tarefas
-   */
-    $scope.isItemSelecionado = function(itens) {
-  		return itens.some(function (item){
-  			return item.selecionado;
-  		});
     };
 
     /**
