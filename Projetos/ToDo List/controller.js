@@ -2,13 +2,12 @@
 'use strict';
 
 angular
-
   .module('toDoList')
   .controller("toDoListCtrl", todo);
   angular.$inject = ['$scope', '$timeout','$window','listarService', 'removeItensFactory'];
 
   function todo ($scope, $timeout, $window, listarService, removeItensFactory) {
-  $scope.teste = function(){
+  $scope.fechar = function(){
     $('.toast').hide();
   }
 
@@ -89,8 +88,8 @@ angular
       item.situacao = "pendente";
       $scope.itens.push(angular.copy(item));
       $scope.item.descricao = "";
-      localStorage.setItem('toDo', JSON.stringify($scope.itens));
       $scope.alerta("Cadastro de tarefa realizado com sucesso!");
+      localStorage.setItem('toDo', JSON.stringify($scope.itens));
     };
 
   /**
@@ -99,9 +98,8 @@ angular
   */
     $scope.excluirItem = function(item){
 	  removeItensFactory.removerItem($scope.itens, item.id);
-	  localStorage.setItem('toDo', JSON.stringify($scope.itens));
 	  $scope.alerta("Exclusao de tarefa realizada com sucesso!");
-
+    localStorage.setItem('toDo', JSON.stringify($scope.itens));
     };
 
   /**
@@ -129,8 +127,8 @@ angular
         situacao.id = guid();
         $scope.situacoes.push(angular.copy(situacao));
         $scope.situacao.descricao = "";
-        localStorage.setItem('toDoSituacao', JSON.stringify($scope.situacoes));
         $scope.alerta("Cadastro de situacao realizado com sucesso.");
+        localStorage.setItem('toDoSituacao', JSON.stringify($scope.situacoes));
       }
       else{
         $scope.alerta("Ja existe uma situacao cadastrada com esse nome.");
@@ -153,8 +151,8 @@ angular
                break;
             }
           }
-          localStorage.setItem('toDoSituacao', JSON.stringify($scope.situacoes));
           $scope.alerta("Exclusao de situacao realizada com sucesso.");
+          localStorage.setItem('toDoSituacao', JSON.stringify($scope.situacoes));
         }
         else{
           $scope.alerta("Nao foi possivel apagar pois uma tarefa esta cadastrada com essa situacao.");
@@ -179,8 +177,8 @@ angular
       * @description cadastro do tempo que as mensagens serão exibidas
       */
       $scope.configTemp = function(){
-        localStorage.setItem('configTemp', JSON.stringify($scope.tempo));
         $scope.alerta("Configuracao de tempo cadastrada com sucesso");
+        localStorage.setItem('configTemp', JSON.stringify($scope.tempo));
       };
 
     /**
@@ -188,9 +186,9 @@ angular
       * @param {object} mensagem mensagem a ser exibida
       */
       $scope.alerta = function(mensagem){
-        $scope.msg = false;
+        //$scope.msg = false;
         $scope.mensagem = mensagem;
-        $timeout(function(){ $scope.msg = true;}, $scope.tempo);
+        //$timeout(function(){ $scope.msg = true;}, $scope.tempo);
       };
   }
 })();

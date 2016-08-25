@@ -34,8 +34,10 @@
 
   <body ng-controller="toDoListCtrl">
 
-    <div id="diretiva" alerta-directive mensagemalerta="mensagem" ng-click="teste()">
+    <!--DIRETIVA -->
+    <div alerta-directive mensagemalerta="mensagem" ng-click="fechar()">
     </div>
+    <!--DIRETIVA -->
 
     <h3>{{app}}</h3>
     <hr />
@@ -95,11 +97,10 @@
     <input type="text" ng-model="situacao.descricao"><br>
     <button ng-click="adicionarSituacao(situacao)" ng-disabled="!situacao.descricao">Ok</button>
     <br><hr />
-    Config. <br>
+    <!-- Config. <br>
     Tempo de fechamento de mensagens (milissegundos): <br>
     <input type="text" ng-model="tempo"><br>
-    <button ng-click="configTemp()" ng-disabled="!tempo">Ok</button>
-
+    <button ng-click="configTemp()" ng-disabled="!tempo">Ok</button> -->
 
     <br><br>
     <div class="gitkraken" ng-click="redireciona()">{{gitkraken}}</div>
