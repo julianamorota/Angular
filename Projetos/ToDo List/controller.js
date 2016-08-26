@@ -152,7 +152,7 @@ angular
             }
           }
           $scope.alerta("Exclusao de situacao realizada com sucesso.");
-          localStorage.setItem('toDoSituacao', JSON.stringify($scope.situacoes));
+
         }
         else{
           $scope.alerta("Nao foi possivel apagar pois uma tarefa esta cadastrada com essa situacao.");
@@ -177,8 +177,8 @@ angular
       * @description cadastro do tempo que as mensagens serão exibidas
       */
       $scope.configTemp = function(){
-        $scope.alerta("Configuracao de tempo cadastrada com sucesso");
         localStorage.setItem('configTemp', JSON.stringify($scope.tempo));
+        $scope.alerta("Configuracao de tempo cadastrada com sucesso");
       };
 
     /**
